@@ -4,12 +4,8 @@ on:
   push:
     branches:
       - main
-    
-      
 
 env:
-  TF_API_TOKEN: "${{ secrets.TF_API_TOKEN }}"
-  TF_API_URL: "app.terraform.io"
   CONFIG_DIRECTORY: "lab-7"
 
 jobs:
@@ -17,31 +13,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout le code
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Terraform CLI
+      - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2
         with:
-          terraform_version: 1.6.7  # Modifiez en fonction de la version souhaitée
+          terraform_version: 1.6.7
+          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
 
-      - name: Configure Terraform Cloud
-        run: |
-          ls -a
-          echo "credentials \"$TF_API_URL\" {" >> ~/.terraformrc
-          echo "  token = \"${{ secrets.TF_API_TOKEN }}\"" >> ~/.terraformrc
-          echo "}" >> ~/.terraformrc
+      - name: Terraform Init
+        run: terraform init
         working-directory: ${{ env.CONFIG_DIRECTORY }}
 
-      - name: Initialize Terraform
-        run: |
-          terraform init
-          ls -a
+      - name: Terraform Plan
+        run: terraform plan
         working-directory: ${{ env.CONFIG_DIRECTORY }}
 
-        
-      - name: Terraform apply
-        run: |
-          ls -a
-          terraform apply --auto-approve
+      - name: Terraform Apply
+        run: terraform apply -auto-approve
         working-directory: ${{ env.CONFIG_DIRECTORY }}
