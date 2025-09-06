@@ -23,7 +23,7 @@ provider "aws" {
 resource "aws_instance" "vm" {
     ami = "ami-004cd0b750b0e2269"
     instance_type = "t4g.micro"
-    key_name = "terraformcloud"
+    key_name = "devops-victor"
   tags = {
     Name = "vm-victor"
   }
