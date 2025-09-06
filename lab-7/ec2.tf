@@ -16,9 +16,7 @@ terraform {
   }
 }
 
-provider "aws" {
-  region     = "eu-west-3"
-}
+provider "aws" {}
 
 resource "aws_instance" "vm" {
     ami = "ami-004cd0b750b0e2269"
