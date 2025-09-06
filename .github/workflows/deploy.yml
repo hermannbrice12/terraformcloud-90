@@ -23,8 +23,7 @@ jobs:
       - name: Set up Terraform CLI
         uses: hashicorp/setup-terraform@v2
         with:
-          terraform_version: latest  # Modifiez en fonction de la version souhaitée
-
+          terraform_version: latest 
       - name: Configure Terraform Cloud
         run: |
           ls -a
