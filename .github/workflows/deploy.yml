@@ -18,10 +18,10 @@ jobs:
 
     steps:
       - name: Checkout le code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v2
 
       - name: Set up Terraform CLI
-        uses: hashicorp/setup-terraform@v2.1.0
+        uses: hashicorp/setup-terraform@v2
         with:
           terraform_version: 1.6.7  # Modifiez en fonction de la version souhaitée
 
